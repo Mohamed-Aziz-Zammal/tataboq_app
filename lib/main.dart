@@ -28,23 +28,30 @@ class ImagePage extends StatelessWidget {
 
         ),
         ),
-        Row(
-          children: [
-            Expanded(child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Image.asset("images/image-1.png"),
-            ),
-              
-              ),
-             Expanded(child: Padding(
-               padding: const EdgeInsets.all(20.0),
-               child: Image.asset("images/image-1.png"),
-             ),
-              
-              ),
-              
-             
-          ],
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: [
+              Expanded(child: TextButton(
+                onPressed: () { 
+                  print("Button 1");
+                 },
+                child: Image.asset("images/image-1.png"),
+                ),
+                
+                ),
+               Expanded(child: TextButton(
+                onPressed: () { 
+                  print("Button 2");
+                 },
+                child: Image.asset("images/image-1.png")
+                ),
+                
+                ),
+                
+               
+            ],
+          ),
         )
         ],
     );
