@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(MaterialApp(
@@ -22,13 +23,22 @@ class ImagePage extends StatefulWidget {
 
 class _ImagePageState extends State<ImagePage> {
   int leftImageNumber = 1;
+  int rightImageNumber = 2;
+
+  void changeImage() {
+    leftImageNumber = Random().nextInt(8) + 1;
+    rightImageNumber = Random().nextInt(8) + 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
-          "حاول مرة اخرى",
+          leftImageNumber == rightImageNumber
+              ? "تمت المطابقة مبروك 🥳"
+              : "حاول مرة اخرى",
           style: TextStyle(
             fontSize: 40,
             color: Colors.white,
@@ -42,7 +52,7 @@ class _ImagePageState extends State<ImagePage> {
                 child: TextButton(
                   onPressed: () {
                     setState(() {
-                      leftImageNumber = 4;
+                      changeImage();
                     });
                   },
                   child: Image.asset("images/image-$leftImageNumber.png"),
@@ -51,9 +61,11 @@ class _ImagePageState extends State<ImagePage> {
               Expanded(
                 child: TextButton(
                     onPressed: () {
-                      print("Button 2");
+                      setState(() {
+                       changeImage();
+                      });
                     },
-                    child: Image.asset("images/image-1.png")),
+                    child: Image.asset("images/image-$rightImageNumber.png")),
               ),
             ],
           ),
